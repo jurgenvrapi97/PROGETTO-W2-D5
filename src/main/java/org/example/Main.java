@@ -4,10 +4,10 @@ import com.github.javafaker.Faker;
 import org.example.esential.Catalog;
 import org.example.esential.Libro;
 import org.example.esential.Rivista;
-import org.example.Periodicita;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -46,6 +46,9 @@ public class Main {
                     break;
                 case 2:
                     // Rimozione di un elemento dato un codice ISBN
+                    System.out.println("inserisci ISBN da eliminare:");
+                    int isbn = Integer.parseInt(scanner.nextLine());
+                    rimuoviIsbn(catalogo, isbn);
                     break;
                 case 3:
                     // Ricerca per ISBN
@@ -137,25 +140,25 @@ public class Main {
         Faker faker = new Faker(Locale.ITALY);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Vuoi aggiungere un libro o una rivista? (1 = libro, 2 = rivista)");
-        int tipo = scanner.nextInt();
+        int tipo = Integer.parseInt(scanner.nextLine());
         System.out.println("Inserisci il titolo:");
-        String titolo = scanner.next();
+        String titolo = scanner.nextLine();
         System.out.println("Inserisci l'anno di pubblicazione:");
-        int anno = scanner.nextInt();
+        int anno = Integer.parseInt(scanner.nextLine());
         System.out.println("Inserisci il numero di pagine:");
-        int pagine = scanner.nextInt();
+        int pagine = Integer.parseInt(scanner.nextLine());
         if (tipo == 1) {
             System.out.println("Inserisci l'autore:");
-            String autore = scanner.next();
+            String autore = scanner.nextLine();
 
             System.out.println("Inserisci il genere:");
-            String genere = scanner.next();
+            String genere = scanner.nextLine();
 
             Libro libro = new Libro(faker.code().isbn10(), titolo, anno, pagine, autore, genere);
             catalogo.add(libro);
         } else if (tipo == 2) {
             System.out.println("Inserisci la periodicità (1 = settimanale, 2 = mensile, 3 = semestrale):");
-            int periodicita = scanner.nextInt();
+            int periodicita = Integer.parseInt(scanner.nextLine());
             Periodicita periodo;
             switch (periodicita) {
                 case 1:
@@ -178,6 +181,18 @@ public class Main {
         } else {
             System.out.println("Scelta non valida. Riprova.");
         }
+    }
+
+
+    //eliminazione di elementi tramite codice isbn
+    public static void rimuoviIsbn(ArrayList<Catalog> catalogo, int isbn) {
+        if (catalogo.stream().anyMatch(catalog -> catalog.getCodiceISBN().equals(isbn))) {
+            catalogo.removeIf(catalog -> catalog.getCodiceISBN().equals(isbn));
+            System.out.println("hai rimosso con successo");
+        } else {
+            System.out.println("non abbiamo trovato un elemento con isbn:" + isbn + " da rimuovere");
+        }
+
     }
 }
 
