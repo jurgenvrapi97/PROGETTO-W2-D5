@@ -1,15 +1,22 @@
 package org.example;
 
 import com.github.javafaker.Faker;
+
 import org.example.esential.Catalog;
 import org.example.esential.Libro;
 import org.example.esential.Rivista;
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        File file = new File("archivio.txt");
 
         ArrayList<Catalog> catalogo = new ArrayList<>();
         //creazione di libri/riviste pre-caricate nel catalogo
@@ -67,9 +74,11 @@ public class Main {
                     break;
                 case 6:
                     // Salvataggio su disco dell'archivio
+                    scriviArchivio(catalogo, file);
                     break;
                 case 7:
                     // Caricamento dal disco dell'archivio
+                    caricaArchivio(file);
                     break;
                 case 0:
                     System.out.println("Arrivederci!");
@@ -233,6 +242,29 @@ public class Main {
             elementiTrovati.forEach(libro -> System.out.println(elementiTrovati));
         } else {
             System.out.println("non ci sono libri di quel autore");
+        }
+    }
+
+    // Salvataggio su disco dell'archivio
+    public static void scriviArchivio(ArrayList<Catalog> lista, File file) {
+        try {
+            FileUtils.writeLines(file, "UTF-8", lista);
+            System.out.println("la lista è stata salvata nell'archivio");
+        } catch (IOException e) {
+            System.out.println("Si è verificato un errore durante la scrittura nell'archivio.");
+        }
+    }
+
+    // Caricamento dal disco dell'archivio
+    public static void caricaArchivio(File file) {
+        try {
+            List<String> contenuto = FileUtils.readLines(file, "UTF-8");
+            System.out.println("Il contenuto dell'archivio è:");
+            for (String riga : contenuto) {
+                System.out.println(riga);
+            }
+        } catch (IOException e) {
+            System.out.println("Si è verificato un errore durante la lettura dell'archivio.");
         }
     }
 

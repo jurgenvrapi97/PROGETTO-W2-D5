@@ -1,0 +1,10 @@
+Rivista{periodicita=MENSILE, codiceISBN='0757454240', titolo='It's a Battlefield', annoPubblicazione=1853, numeroPagine=1911}
+Rivista{periodicita=MENSILE, codiceISBN='0921284764', titolo='The Little Foxes', annoPubblicazione=1767, numeroPagine=1996}
+Rivista{periodicita=SEMESTRALE, codiceISBN='0998175269', titolo='The Man Within', annoPubblicazione=1781, numeroPagine=1976}
+Rivista{periodicita=MENSILE, codiceISBN='0927655705', titolo='Recalled to Life', annoPubblicazione=1970, numeroPagine=1987}
+Rivista{periodicita=SEMESTRALE, codiceISBN='199887124X', titolo='Sleep the Brave', annoPubblicazione=1760, numeroPagine=2015}
+Libro{genere='Speech', codiceISBN='1045657840', titolo='Eyeless in Gaza', annoPubblicazione=1974, numeroPagine=2003, autore=Alighieri Pagano}
+Rivista{periodicita=SEMESTRALE, codiceISBN='1885646607', titolo='A Time of Gifts', annoPubblicazione=1903, numeroPagine=1930}
+Rivista{periodicita=SETTIMANALE, codiceISBN='0960157530', titolo='Edna O'Brien', annoPubblicazione=1945, numeroPagine=2012}
+Libro{genere='Fairy tale', codiceISBN='0876661029', titolo='Bury My Heart at Wounded Knee', annoPubblicazione=1964, numeroPagine=1968, autore=Antonio Moretti}
+Rivista{periodicita=MENSILE, codiceISBN='1951135164', titolo='To a God Unknown', annoPubblicazione=1847, numeroPagine=1976}
