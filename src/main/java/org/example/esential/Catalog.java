@@ -1,6 +1,6 @@
 package org.example.esential;
 
-public abstract class  Catalog {
+public abstract class Catalog {
     protected String codiceISBN;
     protected String titolo;
     protected int annoPubblicazione;
@@ -45,5 +45,15 @@ public abstract class  Catalog {
 
     public int getNumeroPagine() {
         return numeroPagine;
+    }
+
+    @Override
+    public String toString() {
+        return "Catalog{" +
+                "codiceISBN='" + codiceISBN + '\'' +
+                ", titolo='" + titolo + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}';
     }
 }

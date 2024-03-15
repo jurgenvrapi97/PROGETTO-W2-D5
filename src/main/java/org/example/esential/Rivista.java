@@ -1,5 +1,7 @@
 package org.example.esential;
 
+import org.example.Periodicita;
+
 public class Rivista extends Catalog {
 
     private Periodicita periodicita;
@@ -17,4 +19,14 @@ public class Rivista extends Catalog {
         this.periodicita = periodicita;
     }
 
+    @Override
+    public String toString() {
+        return "Rivista{" +
+                "periodicita=" + periodicita +
+                ", codiceISBN='" + codiceISBN + '\'' +
+                ", titolo='" + titolo + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}';
+    }
 }

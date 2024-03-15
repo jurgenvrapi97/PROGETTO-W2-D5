@@ -1,6 +1,6 @@
 package org.example.esential;
 
-public class Libro extends Catalog{
+public class Libro extends Catalog {
     private String autore;
     private String genere;
 
@@ -25,5 +25,16 @@ public class Libro extends Catalog{
 
     public String getGenere() {
         return genere;
+    }
+
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "genere='" + genere + '\'' +
+                ", codiceISBN='" + codiceISBN + '\'' +
+                ", titolo='" + titolo + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}';
     }
 }
