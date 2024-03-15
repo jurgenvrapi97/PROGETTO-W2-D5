@@ -5,10 +5,7 @@ import org.example.esential.Catalog;
 import org.example.esential.Libro;
 import org.example.esential.Rivista;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -58,9 +55,15 @@ public class Main {
                     break;
                 case 4:
                     // Ricerca per anno pubblicazione
+                    System.out.println("inserisci anno da cercare:");
+                    int anno = Integer.parseInt(scanner.nextLine());
+                    ricercaAnno(catalogo, anno);
                     break;
                 case 5:
                     // Ricerca per autore
+                    System.out.println("inserisci autore da cercare:");
+                    String autore = scanner.nextLine();
+                    ricercaAutore(catalogo, autore);
                     break;
                 case 6:
                     // Salvataggio su disco dell'archivio
@@ -116,12 +119,14 @@ public class Main {
                 .filter(elemento -> elemento instanceof Libro)
                 .map(elemento -> (Libro) elemento)
                 .forEach(System.out::println);
+        System.out.println();
         System.out.println("------------------------------------------------------------------");
         System.out.println("Riviste:");
         catalogo.stream()
                 .filter(elemento -> elemento instanceof Rivista)
                 .map(elemento -> (Rivista) elemento)
                 .forEach(System.out::println);
+        System.out.println();
     }
 
     public static void aggiungiElementoCatalog(ArrayList<Catalog> catalogo) {
@@ -182,6 +187,8 @@ public class Main {
         }
     }
 
+
+    //ricerca tramite codice isbn
     public static void ricercaIsbn(ArrayList<Catalog> catalogo, String isbn) {
         Catalog elementoTrovato = catalogo.stream().filter(catalog -> catalog.getCodiceISBN().equals(isbn))
                 .findFirst().orElse(null);
@@ -200,7 +207,37 @@ public class Main {
         }
     }
 
+    //ricerca per anno di pubblicazione
+    public static void ricercaAnno(ArrayList<Catalog> catalogo, int anno) {
+        List<Catalog> elementiTrovati = catalogo.stream().filter(catalog -> catalog.getAnnoPubblicazione() == anno)
+                .toList();
+        for (Catalog elemento : elementiTrovati) {
+            if (elemento instanceof Libro) {
+                Libro libro = (Libro) elemento;
+                System.out.println(libro);
+            } else if (elemento instanceof Rivista) {
+                Rivista rivista = (Rivista) elemento;
+                System.out.println(rivista);
+            }
+        }
+
+    }
+
+    //// Ricerca per autore
+    public static void ricercaAutore(ArrayList<Catalog> catalogo, String autore) {
+        List<Libro> elementiTrovati = catalogo.stream().filter(catalog -> catalog instanceof Libro)
+                .map(catalog -> (Libro) catalog)
+                .filter(libro -> libro.getAutore().equals(autore))
+                .toList();
+        if (elementiTrovati != null) {
+            elementiTrovati.forEach(libro -> System.out.println(elementiTrovati));
+        } else {
+            System.out.println("non ci sono libri di quel autore");
+        }
+    }
+
 }
+
 
 
 
