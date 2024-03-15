@@ -81,7 +81,7 @@ public class Main {
                     caricaArchivio(file);
                     break;
                 case 0:
-                    System.out.println("Arrivederci!");
+                    System.out.println("Fine");
                     break;
                 default:
                     System.out.println("Scelta non valida. Riprova.");
@@ -263,6 +263,20 @@ public class Main {
             for (String riga : contenuto) {
                 System.out.println(riga);
             }
+
+            //avevo iniziato ricreando gli oggetti ma avendo finito il tempo mi sono fermato
+
+//            List<Catalog> catalogoArchivio = contenuto.stream().map(s -> {
+//                String[] detail = s.split(",");
+//                if (detail[0].equals("Libro")) {
+//                    return new Libro(detail[2], detail[3], Integer.parseInt(detail[4]), Integer.parseInt(detail[5]), detail[6], detail[1]);
+//                } else if (detail[0].equals("Rivista")) {
+//                    return new Rivista(detail[1], detail[2], Integer.parseInt(detail[3]), Integer.parseInt(detail[4]), Periodicita.valueOf(detail[5]));
+//                } else {
+//                    return null;
+//                }
+//            }).toList();
+
         } catch (IOException e) {
             System.out.println("Si è verificato un errore durante la lettura dell'archivio.");
         }
