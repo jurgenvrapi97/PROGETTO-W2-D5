@@ -47,11 +47,14 @@ public class Main {
                 case 2:
                     // Rimozione di un elemento dato un codice ISBN
                     System.out.println("inserisci ISBN da eliminare:");
-                    int isbn = Integer.parseInt(scanner.nextLine());
-                    rimuoviIsbn(catalogo, isbn);
+                    String isbnEliminazione = scanner.nextLine();
+                    rimuoviIsbn(catalogo, isbnEliminazione);
                     break;
                 case 3:
                     // Ricerca per ISBN
+                    System.out.println("inserisci ISBN da cercare:");
+                    String isbnRicerca = scanner.nextLine();
+                    ricercaIsbn(catalogo, isbnRicerca);
                     break;
                 case 4:
                     // Ricerca per anno pubblicazione
@@ -112,28 +115,13 @@ public class Main {
         catalogo.stream()
                 .filter(elemento -> elemento instanceof Libro)
                 .map(elemento -> (Libro) elemento)
-                .forEach(libro -> {
-                    System.out.println("Codice ISBN: " + libro.getCodiceISBN());
-                    System.out.println("Titolo: " + libro.getTitolo());
-                    System.out.println("Anno pubblicazione: " + libro.getAnnoPubblicazione());
-                    System.out.println("Numero pagine: " + libro.getNumeroPagine());
-                    System.out.println("Autore: " + libro.getAutore());
-                    System.out.println("Genere: " + libro.getGenere());
-                    System.out.println();
-                });
+                .forEach(System.out::println);
         System.out.println("------------------------------------------------------------------");
         System.out.println("Riviste:");
         catalogo.stream()
                 .filter(elemento -> elemento instanceof Rivista)
                 .map(elemento -> (Rivista) elemento)
-                .forEach(rivista -> {
-                    System.out.println("Codice ISBN: " + rivista.getCodiceISBN());
-                    System.out.println("Titolo: " + rivista.getTitolo());
-                    System.out.println("Anno pubblicazione: " + rivista.getAnnoPubblicazione());
-                    System.out.println("Numero pagine: " + rivista.getNumeroPagine());
-                    System.out.println("Periodicità: " + rivista.getPeriodicita());
-                    System.out.println();
-                });
+                .forEach(System.out::println);
     }
 
     public static void aggiungiElementoCatalog(ArrayList<Catalog> catalogo) {
@@ -185,16 +173,35 @@ public class Main {
 
 
     //eliminazione di elementi tramite codice isbn
-    public static void rimuoviIsbn(ArrayList<Catalog> catalogo, int isbn) {
+    public static void rimuoviIsbn(ArrayList<Catalog> catalogo, String isbn) {
         if (catalogo.stream().anyMatch(catalog -> catalog.getCodiceISBN().equals(isbn))) {
             catalogo.removeIf(catalog -> catalog.getCodiceISBN().equals(isbn));
             System.out.println("hai rimosso con successo");
         } else {
             System.out.println("non abbiamo trovato un elemento con isbn:" + isbn + " da rimuovere");
         }
-
     }
+
+    public static void ricercaIsbn(ArrayList<Catalog> catalogo, String isbn) {
+        Catalog elementoTrovato = catalogo.stream().filter(catalog -> catalog.getCodiceISBN().equals(isbn))
+                .findFirst().orElse(null);
+        if (elementoTrovato != null) {
+            if (elementoTrovato instanceof Libro) {
+                System.out.println("hai trovato un libro");
+                System.out.println();
+                Libro libro = (Libro) elementoTrovato;
+                System.out.println(libro);
+            } else if (elementoTrovato instanceof Rivista) {
+                System.out.println("hai trovato una rivista");
+                System.out.println();
+                Rivista rivista = (Rivista) elementoTrovato;
+                System.out.println(rivista);
+            }
+        }
+    }
+
 }
+
 
 
 
